@@ -1,10 +1,10 @@
 package vn.bloodharvest.season;
 
 public enum Season {
-    XUAN("Xuan", "§a§lMua Xuan §7- Lua/Mia x1.3"),
-    HA("Ha", "§6§lMua Ha §7- Nang han, Ember Pepper"),
-    THU("Thu", "§e§lMua Thu §7- Bi ngo/Dua x1.5"),
-    DONG("Dong", "§b§lMua Dong §7- Dong bang, coi chung Chill");
+    XUAN("Xuân", "§a§lMùa Xuân §7- Lúa/Mía x1.3"),
+    HA("Hạ", "§6§lMùa Hạ §7- Nắng hạn, Ember Pepper"),
+    THU("Thu", "§e§lMùa Thu §7- Bí ngô/Dưa x1.5"),
+    DONG("Đông", "§b§lMùa Đông §7- Đóng băng, coi chừng Chill");
 
     private final String id;
     private final String display;

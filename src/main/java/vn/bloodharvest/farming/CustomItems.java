@@ -56,49 +56,49 @@ public class CustomItems implements Listener {
 
     public ItemStack createBloodShard(int amount) {
         ItemStack it = base(Material.AMETHYST_SHARD, "§c§lBlood Shard",
-                Arrays.asList("§7Tien Blood Moon", "§7Doi enchant / goi boss"), "blood_shard");
+                Arrays.asList("§7Tiền Blood Moon", "§7Đổi enchant / gọi boss"), "blood_shard");
         it.setAmount(Math.max(1, amount));
         return it;
     }
 
     public ItemStack createFrostberry(int amount) {
         ItemStack it = base(Material.SWEET_BERRIES, "§b§lFrostberry",
-                Arrays.asList("§7Moc mua §bDong", "§7An: hoi 2 dui + chong lanh 30s"), "frostberry");
+                Arrays.asList("§7Mọc mùa §bĐông", "§7Ăn: hồi 2 đùi + chống lạnh 30s"), "frostberry");
         it.setAmount(Math.max(1, amount));
         return it;
     }
 
     public ItemStack createEmberPepper(int amount) {
         ItemStack it = base(Material.CARROT, "§6§lEmber Pepper",
-                Arrays.asList("§7Moc mua §6Ha", "§7An: nhanh nhe 20s + no bung"), "ember_pepper");
+                Arrays.asList("§7Mọc mùa §6Hạ", "§7Ăn: nhanh nhẹ 20s + no bụng"), "ember_pepper");
         it.setAmount(Math.max(1, amount));
         return it;
     }
 
     public ItemStack createTraAm(int amount) {
-        ItemStack it = base(Material.HONEY_BOTTLE, "§e§lTra Am",
-                Arrays.asList("§7Giai Chill mua Dong", "§7Uong: khang lanh 3 phut"), "tra_am");
+        ItemStack it = base(Material.HONEY_BOTTLE, "§e§lTrà Ấm",
+                Arrays.asList("§7Giải Chill mùa Đông", "§7Uống: kháng lạnh 3 phút"), "tra_am");
         it.setAmount(Math.max(1, amount));
         return it;
     }
 
     public ItemStack createMoonroot(int amount) {
         ItemStack it = base(Material.BEETROOT, "§5§lMoonroot",
-                Arrays.asList("§7Chi rot dem §cBlood Moon", "§7An: hoi 3 tim tam thoi 5p"), "moonroot");
+                Arrays.asList("§7Chỉ rớt đêm §cBlood Moon", "§7Ăn: hồi 3 tim tạm thời 5p"), "moonroot");
         it.setAmount(Math.max(1, amount));
         return it;
     }
 
     public ItemStack createBanhBiThu(int amount) {
-        ItemStack it = base(Material.PUMPKIN_PIE, "§e§lBanh Bi Thu",
-                Arrays.asList("§7Dac san mua §eThu", "§7An: no lau + khang 1p"), "banh_bi");
+        ItemStack it = base(Material.PUMPKIN_PIE, "§e§lBánh Bí Thu",
+                Arrays.asList("§7Đặc sản mùa §eThu", "§7Ăn: no lâu + kháng 1p"), "banh_bi");
         it.setAmount(Math.max(1, amount));
         return it;
     }
 
     public ItemStack createLauNamNguyet(int amount) {
-        ItemStack it = base(Material.MUSHROOM_STEW, "§c§lLau Nam Nguyet",
-                Arrays.asList("§7An truoc khi danh boss", "§7+3 tim tam thoi 5p + hoi suc"), "lau_nam");
+        ItemStack it = base(Material.MUSHROOM_STEW, "§c§lLẩu Nấm Nguyệt",
+                Arrays.asList("§7Ăn trước khi đánh boss", "§7+3 tim tạm thời 5p + hồi sức"), "lau_nam");
         it.setAmount(Math.max(1, amount));
         return it;
     }
@@ -106,17 +106,17 @@ public class CustomItems implements Listener {
     public ItemStack createEnchantBook(String type, int level) {
         String name;
         switch (type) {
-            case "boithu" -> name = "§a§lSach Boi Thu " + level;
-            case "suonghan" -> name = "§b§lSach Suong Han " + level;
-            case "huyetcuong" -> name = "§c§lSach Huyet Cuong " + level;
-            case "dongam" -> name = "§e§lSach Dong Am " + level;
-            case "nguyetgiap" -> name = "§9§lSach Nguyet Giap " + level;
-            default -> name = "§d§lSach Nguyet Am " + level;
+            case "boithu" -> name = "§a§lSách Bội Thu " + level;
+            case "suonghan" -> name = "§b§lSách Sương Hàn " + level;
+            case "huyetcuong" -> name = "§c§lSách Huyết Cuồng " + level;
+            case "dongam" -> name = "§e§lSách Đông Ấm " + level;
+            case "nguyetgiap" -> name = "§9§lSách Nguyệt Giáp " + level;
+            default -> name = "§d§lSách Nguyệt Ẩm " + level;
         }
         ItemStack it = new ItemStack(Material.ENCHANTED_BOOK, 1);
         ItemMeta m = it.getItemMeta();
         m.setDisplayName(name);
-        m.setLore(Arrays.asList("§7Cam sach + /bh enchant <loai>", "§7Ep vao do dang cam tren tay", "§8" + type + ":" + level));
+        m.setLore(Arrays.asList("§7Cầm sách + /bh enchant <loại>", "§7Ép vào đồ đang cầm trên tay", "§8" + type + ":" + level));
         m.getPersistentDataContainer().set(itemKey, PersistentDataType.STRING, "enchant_" + type);
         // Luu level vao PDC rieng de lenh doc
         m.getPersistentDataContainer().set(new NamespacedKey(plugin, "enchant_level"), PersistentDataType.INTEGER, level);
@@ -179,7 +179,7 @@ public class CustomItems implements Listener {
             r5.setIngredient('B', Material.BOOK);
             plugin.getServer().addRecipe(r5);
         } catch (Exception e) {
-            plugin.getLogger().warning("Khong dang ky duoc recipe: " + e.getMessage());
+            plugin.getLogger().warning("Không đăng ký được recipe: " + e.getMessage());
         }
     }
 

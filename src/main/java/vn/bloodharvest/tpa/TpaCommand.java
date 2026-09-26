@@ -27,7 +27,7 @@ public class TpaCommand implements CommandExecutor, TabCompleter {
 
     private Player needPlayer(CommandSender s) {
         if (s instanceof Player p) return p;
-        s.sendMessage(Component.text("§cChi player moi dung duoc lenh nay."));
+        s.sendMessage(Component.text("§cChỉ player mới dùng được lệnh này."));
         return null;
     }
 
@@ -45,12 +45,12 @@ public class TpaCommand implements CommandExecutor, TabCompleter {
                 Player from = needPlayer(sender);
                 if (from == null) return true;
                 if (args.length < 1) {
-                    sender.sendMessage(Component.text("§e/" + label + " <ten>"));
+                    sender.sendMessage(Component.text("§e/" + label + " <tên>"));
                     return true;
                 }
                 Player to = findOnline(args[0]);
                 if (to == null) {
-                    sender.sendMessage(Component.text("§cKhong tim thay " + args[0] + " (offline?)."));
+                    sender.sendMessage(Component.text("§cKhông tìm thấy " + args[0] + " (offline?)."));
                     return true;
                 }
                 manager.send(from, to, n.equals("tpahere"));
@@ -78,7 +78,7 @@ public class TpaCommand implements CommandExecutor, TabCompleter {
                 Player p = needPlayer(sender);
                 if (p == null) return true;
                 boolean off = manager.toggle(p);
-                p.sendMessage(Component.text(off ? "§cDa TAT yeu cau dich chuyen." : "§aDa BAT yeu cau dich chuyen."));
+                p.sendMessage(Component.text(off ? "§cĐã TẮT yêu cầu dịch chuyển." : "§aĐã BẬT yêu cầu dịch chuyển."));
                 return true;
             }
             default -> { return false; }

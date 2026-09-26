@@ -1,5 +1,5 @@
-# BloodHarvest v1.0 config - Paper 1.20.6
-# Giu that nhe cho RAM 2.5GB: 3-4 task cham (5s-5p), khong tick per-tick
+# BloodHarvest v1.1 config - Paper 1.20.6
+# Giữ thật nhẹ cho RAM 2.5GB: task chậm (5s-5p), không tick per-tick
 
 season:
   # So ngay ingame moi mua (1 ngay = 24000 ticks ~ 20 phut)

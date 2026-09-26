@@ -41,16 +41,16 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                 }
                 if (args[1].equalsIgnoreCase("next") && sender.hasPermission("bloodharvest.admin")) {
                     plugin.getSeasonManager().nextSeason();
-                    sender.sendMessage(Component.text("§aDa chuyen sang " + plugin.getSeasonManager().currentSeason().name()));
+                    sender.sendMessage(Component.text("§aĐã chuyển sang " + plugin.getSeasonManager().currentSeason().display()));
                     return true;
                 }
                 if (args[1].equalsIgnoreCase("set") && args.length >= 3 && sender.hasPermission("bloodharvest.admin")) {
                     try {
                         Season s = Season.fromString(args[2]);
                         plugin.getSeasonManager().setSeason(s);
-                        sender.sendMessage(Component.text("§aSet mua -> " + s.name()));
+                        sender.sendMessage(Component.text("§aĐặt mùa -> " + s.display()));
                     } catch (Exception ex) {
-                        sender.sendMessage(Component.text("§cMua khong hop le: XUAN/HA/THU/DONG"));
+                        sender.sendMessage(Component.text("§cMùa không hợp lệ: XUAN/HA/THU/DONG"));
                     }
                     return true;
                 }
@@ -59,30 +59,30 @@ public class BHCommand implements CommandExecutor, TabCompleter {
             }
             case "lich", "calendar" -> {
                 var sm = plugin.getSeasonManager();
-                sender.sendMessage(Component.text("§6§lLich BloodHarvest"));
-                sender.sendMessage(Component.text("§7Mua: " + String.join(" -> ", sm.getOrder())));
+                sender.sendMessage(Component.text("§6§lLịch BloodHarvest"));
+                sender.sendMessage(Component.text("§7Mùa: " + String.join(" -> ", sm.getOrder())));
                 sender.sendMessage(sm.statusLine());
                 if (!Bukkit.getWorlds().isEmpty()) {
                     World w = Bukkit.getWorlds().get(0);
                     long nights = plugin.getBloodMoonManager().nightsToNext(w);
-                    sender.sendMessage(Component.text(nights == 0 ? "§cDem nay la Blood Moon!" : "§7Blood Moon sau " + nights + " dem."));
+                    sender.sendMessage(Component.text(nights == 0 ? "§cĐêm nay là Blood Moon!" : "§7Blood Moon sau " + nights + " đêm."));
                 }
-                sender.sendMessage(Component.text("§7Boss song: " + plugin.getBossManager().aliveBosses() + " | Elite: " + plugin.getBossManager().aliveElites()));
+                sender.sendMessage(Component.text("§7Boss sống: " + plugin.getBossManager().aliveBosses() + " | Elite: " + plugin.getBossManager().aliveElites()));
                 return true;
             }
             case "bloodmoon" -> {
                 if (args.length == 1) {
                     boolean a = plugin.getBloodMoonManager().isActive();
-                    sender.sendMessage(Component.text(a ? "§cDang Blood Moon!" : "§7Khong co Blood Moon."));
+                    sender.sendMessage(Component.text(a ? "§cĐang Blood Moon!" : "§7Không có Blood Moon."));
                     return true;
                 }
                 if (!sender.hasPermission("bloodharvest.admin")) {
-                    sender.sendMessage(Component.text("§cCan quyen admin."));
+                    sender.sendMessage(Component.text("§cCần quyền admin."));
                     return true;
                 }
                 if (args[1].equalsIgnoreCase("start") && sender instanceof Player p) {
                     plugin.getBloodMoonManager().forceStart(p);
-                    sender.sendMessage(Component.text("§cDa bat Blood Moon!"));
+                    sender.sendMessage(Component.text("§cĐã bật Blood Moon!"));
                     return true;
                 }
                 if (args[1].equalsIgnoreCase("end")) {
@@ -93,11 +93,11 @@ public class BHCommand implements CommandExecutor, TabCompleter {
             }
             case "boss" -> {
                 if (!(sender instanceof Player p)) {
-                    sender.sendMessage(Component.text("§cChi player moi goi boss."));
+                    sender.sendMessage(Component.text("§cChỉ player mới gọi boss."));
                     return true;
                 }
                 if (!sender.hasPermission("bloodharvest.admin")) {
-                    sender.sendMessage(Component.text("§cCan quyen admin de test boss."));
+                    sender.sendMessage(Component.text("§cCần quyền admin để gọi boss."));
                     return true;
                 }
                 if (args.length < 2) {
@@ -106,7 +106,7 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                 }
                 if (args[1].equalsIgnoreCase("list")) {
                     sender.sendMessage(Component.text("§7Boss: dalang, kysi, huyetmau | Elite: yeti, hoayeu, bunhin, tinhlinh"));
-                    sender.sendMessage(Component.text("§7Dang song: boss=" + plugin.getBossManager().aliveBosses() + " elite=" + plugin.getBossManager().aliveElites()));
+                    sender.sendMessage(Component.text("§7Đang sống: boss=" + plugin.getBossManager().aliveBosses() + " elite=" + plugin.getBossManager().aliveElites()));
                     return true;
                 }
                 Location loc = p.getLocation().add(p.getLocation().getDirection().multiply(3));
@@ -121,12 +121,12 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                     case "hoayeu" -> ok = plugin.getBossManager().spawnHoaYeu(loc);
                     case "bunhin" -> ok = plugin.getBossManager().spawnBuNhin(loc);
                     case "tinhlinh" -> ok = plugin.getBossManager().spawnTinhLinh(loc);
-                    default -> sender.sendMessage(Component.text("§cKhong biet boss/elite."));
+                    default -> sender.sendMessage(Component.text("§cKhông biết boss/elite."));
                 }
                 if (name.equals("dalang") || name.equals("kysi") || name.equals("huyetmau")) {
-                    sender.sendMessage(Component.text(ok ? "§aDa goi boss " + name + "!" : "§cDa co boss roi (gioi han 1)."));
+                    sender.sendMessage(Component.text(ok ? "§aĐã gọi boss " + name + "!" : "§cĐã có boss rồi (giới hạn 1)."));
                 } else {
-                    sender.sendMessage(Component.text("§aDa goi elite " + name + "!"));
+                    sender.sendMessage(Component.text("§aĐã gọi elite " + name + "!"));
                 }
                 return true;
             }
@@ -151,9 +151,9 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                     case "lau" -> p.getInventory().addItem(plugin.getCustomItems().createLauNamNguyet(amt));
                     case "nguyetam", "boithu", "suonghan", "huyetcuong", "dongam", "nguyetgiap" ->
                             p.getInventory().addItem(plugin.getCustomItems().createEnchantBook(args[1].toLowerCase(), 1));
-                    default -> sender.sendMessage(Component.text("§cKhong biet item."));
+                    default -> sender.sendMessage(Component.text("§cKhông biết item."));
                 }
-                sender.sendMessage(Component.text("§aDa give " + args[1] + " x" + amt));
+                sender.sendMessage(Component.text("§aĐã tặng " + args[1] + " x" + amt));
                 return true;
             }
             case "enchant" -> {
@@ -174,9 +174,9 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                     case "huyetcuong" -> ok = plugin.getPseudoEnchant().applyHuyetCuong(p, lv);
                     case "dongam" -> ok = plugin.getPseudoEnchant().applyDongAm(p);
                     case "nguyetgiap" -> ok = plugin.getPseudoEnchant().applyNguyetGiap(p, lv);
-                    default -> sender.sendMessage(Component.text("§cKhong biet enchant."));
+                    default -> sender.sendMessage(Component.text("§cKhông biết enchant."));
                 }
-                sender.sendMessage(Component.text(ok ? "§aEnchant thanh cong!" : "§cCam dung loai do tren tay chinh (vu khi/nong cu/giap)."));
+                sender.sendMessage(Component.text(ok ? "§aÉp enchant thành công!" : "§cCầm đúng loại đồ trên tay chính (vũ khí/nông cụ/giáp)."));
                 return true;
             }
             default -> {
@@ -187,8 +187,8 @@ public class BHCommand implements CommandExecutor, TabCompleter {
     }
 
     private void help(CommandSender s) {
-        s.sendMessage(Component.text("§6§lBloodHarvest v1.0"));
-        s.sendMessage(Component.text("§e/bh mua §7- xem mua | §e/bh lich §7- lich + Blood Moon"));
+        s.sendMessage(Component.text("§6§lBloodHarvest v1.1"));
+        s.sendMessage(Component.text("§e/bh mua §7- xem mùa | §e/bh lich §7- lịch + Blood Moon"));
         s.sendMessage(Component.text("§e/bh bloodmoon §7- check | §e/bh boss list §7- xem boss"));
         s.sendMessage(Component.text("§e/bh boss <dalang|kysi|huyetmau|...> §7(admin)"));
         s.sendMessage(Component.text("§e/bh give <shard|moonroot|banh|lau|...> §7(admin)"));

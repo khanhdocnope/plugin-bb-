@@ -67,7 +67,7 @@ public final class BloodHarvestPlugin extends JavaPlugin {
         bossManager.startTask();
         tpaManager.startTask();
 
-        getLogger().info("BloodHarvest v1.0 enabled! 4 mua + BloodMoon + 3 boss + 4 elite san sang.");
+        getLogger().info("BloodHarvest v1.1 enabled! 4 mùa + BloodMoon + 3 boss + 4 elite + TPA sẵn sàng.");
     }
 
     @Override
@@ -76,7 +76,7 @@ public final class BloodHarvestPlugin extends JavaPlugin {
         if (bloodMoonManager != null) bloodMoonManager.stopTask();
         if (bossManager != null) bossManager.stopTask();
         if (tpaManager != null) tpaManager.stopTask();
-        getLogger().info("BloodHarvest v1.0 disabled.");
+        getLogger().info("BloodHarvest v1.1 disabled.");
     }
 
     public SeasonManager getSeasonManager() { return seasonManager; }

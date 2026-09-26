@@ -127,7 +127,7 @@ public class BossManager implements Listener {
                         for (int i = 0; i < 2 && babies + i < 4; i++) {
                             le.getWorld().spawnEntity(le.getLocation().add(random.nextInt(3) - 1, 0, random.nextInt(3) - 1), EntityType.CAVE_SPIDER);
                         }
-                        Bukkit.broadcast(Component.text("§cHuyet Mau sinh dan nhen con!"));
+                        Bukkit.broadcast(Component.text("§cHuyết Mẫu sinh đàn nhện con!"));
                     }
                     for (Entity n : nearby) {
                         if (n instanceof Player p) {
@@ -249,10 +249,10 @@ public class BossManager implements Listener {
     public boolean spawnDaLang(Location loc) {
         if (aliveBosses() >= plugin.getConfig().getInt("boss.max-alive", 1)) return false;
         Ravager rav = (Ravager) loc.getWorld().spawnEntity(loc, EntityType.RAVAGER);
-        setup(rav, "dalang", "§c§lDa Lang Huyet Nguyet §7[ Boss ]",
+        setup(rav, "dalang", "§c§lDạ Lang Huyết Nguyệt §7[ Boss ]",
                 plugin.getConfig().getDouble("boss.dalang-hp", 300.0),
                 plugin.getConfig().getDouble("boss.dalang-damage", 12.0), true);
-        Bukkit.broadcast(Component.text("§c§lBOSS §fDa Lang Huyet Nguyet xuat hien! (" + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ")"));
+        Bukkit.broadcast(Component.text("§c§lBOSS §fDạ Lang Huyết Nguyệt xuất hiện! (" + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ")"));
         return true;
     }
 
@@ -266,30 +266,30 @@ public class BossManager implements Listener {
         sk.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE));
         sk.getEquipment().setItemInMainHand(new ItemStack(Material.BOW));
         horse.addPassenger(sk);
-        setup(sk, "kysi", "§8§lKy Si Khong Dau §7[ Boss ]",
+        setup(sk, "kysi", "§8§lKỵ Sĩ Không Đầu §7[ Boss ]",
                 plugin.getConfig().getDouble("boss.kysi-hp", 260.0),
                 plugin.getConfig().getDouble("boss.kysi-damage", 10.0), true);
         // Ngua chet thi boss mat cho tru -> danh dau ngua de xoa kem
         horse.getPersistentDataContainer().set(bossKey, PersistentDataType.STRING, "kysi_horse");
-        Bukkit.broadcast(Component.text("§c§lBOSS §fKy Si Khong Dau xuat hien! (" + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ")"));
+        Bukkit.broadcast(Component.text("§c§lBOSS §fKỵ Sĩ Không Đầu xuất hiện! (" + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ")"));
         return true;
     }
 
     public boolean spawnHuyetMau(Location loc) {
         if (aliveBosses() >= plugin.getConfig().getInt("boss.max-alive", 1)) return false;
         CaveSpider sp = (CaveSpider) loc.getWorld().spawnEntity(loc, EntityType.CAVE_SPIDER);
-        setup(sp, "huyetmau", "§4§lHuyet Mau §7[ Boss ]",
+        setup(sp, "huyetmau", "§4§lHuyết Mẫu §7[ Boss ]",
                 plugin.getConfig().getDouble("boss.huyetmau-hp", 220.0),
                 plugin.getConfig().getDouble("boss.huyetmau-damage", 9.0), true);
         sp.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0, false, false, false));
-        Bukkit.broadcast(Component.text("§c§lBOSS §fHuyet Mau xuat hien! (" + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ")"));
+        Bukkit.broadcast(Component.text("§c§lBOSS §fHuyết Mẫu xuất hiện! (" + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ")"));
         return true;
     }
 
     public boolean spawnYeti(Location loc) {
         Stray s = (Stray) loc.getWorld().spawnEntity(loc, EntityType.STRAY);
         s.getEquipment().setHelmet(new ItemStack(Material.IRON_HELMET));
-        setup(s, "yeti", "§b§lYeti Bang §7[ Elite Dong ]",
+        setup(s, "yeti", "§b§lYeti Băng §7[ Elite Đông ]",
                 plugin.getConfig().getDouble("boss.yeti-hp", 120.0),
                 plugin.getConfig().getDouble("boss.yeti-damage", 7.0), false);
         return true;
@@ -299,7 +299,7 @@ public class BossManager implements Listener {
         Husk h = (Husk) loc.getWorld().spawnEntity(loc, EntityType.HUSK);
         h.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 0, false, false, false));
         h.getEquipment().setHelmet(new ItemStack(Material.LEATHER_HELMET));
-        setup(h, "hoayeu", "§6§lHoa Yeu Sa Mac §7[ Elite Ha ]",
+        setup(h, "hoayeu", "§6§lHỏa Yêu Sa Mạc §7[ Elite Hạ ]",
                 plugin.getConfig().getDouble("boss.hoayeu-hp", 90.0),
                 plugin.getConfig().getDouble("boss.hoayeu-damage", 6.0), false);
         return true;
@@ -308,7 +308,7 @@ public class BossManager implements Listener {
     public boolean spawnBuNhin(Location loc) {
         IronGolem g = (IronGolem) loc.getWorld().spawnEntity(loc, EntityType.IRON_GOLEM);
         g.setPlayerCreated(false);
-        setup(g, "bunhin", "§e§lBu Nhin Song §7[ Bao ve farm ]",
+        setup(g, "bunhin", "§e§lBù Nhìn Sống §7[ Bảo vệ farm ]",
                 plugin.getConfig().getDouble("boss.bunhin-hp", 150.0),
                 plugin.getConfig().getDouble("boss.bunhin-damage", 8.0), false);
         return true;
@@ -316,7 +316,7 @@ public class BossManager implements Listener {
 
     public boolean spawnTinhLinh(Location loc) {
         Allay a = (Allay) loc.getWorld().spawnEntity(loc, EntityType.ALLAY);
-        setup(a, "tinhlinh", "§a§lTinh Linh Hoa §7[ Elite Xuan ]",
+        setup(a, "tinhlinh", "§a§lTinh Linh Hoa §7[ Elite Xuân ]",
                 plugin.getConfig().getDouble("boss.tinhlinh-hp", 40.0), 0, false);
         return true;
     }
@@ -333,7 +333,7 @@ public class BossManager implements Listener {
             e.getDrops().add(plugin.getCustomItems().createBloodShard(8));
             e.getDrops().add(plugin.getCustomItems().createEnchantBook("nguyetam", 1 + random.nextInt(2)));
             e.getDrops().add(plugin.getCustomItems().createLauNamNguyet(1));
-            Bukkit.broadcast(Component.text("§aBoss Da Lang bi ha! Rot Shard + Nguyet Am."));
+            Bukkit.broadcast(Component.text("§aBoss Dạ Lang bị hạ! Rớt Shard + Nguyệt Ẩm."));
         } else if ("kysi".equals(b)) {
             bosses.remove(le.getUniqueId());
             e.getDrops().clear();
@@ -342,7 +342,7 @@ public class BossManager implements Listener {
             e.getDrops().add(plugin.getCustomItems().createEnchantBook("huyetcuong", 1 + random.nextInt(2)));
             // Xoa ngua kem
             if (le.getVehicle() instanceof SkeletonHorse horse) horse.remove();
-            Bukkit.broadcast(Component.text("§aKy Si Khong Dau bi ha! Rot Shard + Huyet Cuong."));
+            Bukkit.broadcast(Component.text("§aKỵ Sĩ Không Đầu bị hạ! Rớt Shard + Huyết Cuồng."));
         } else if ("huyetmau".equals(b)) {
             bosses.remove(le.getUniqueId());
             e.getDrops().clear();
@@ -350,7 +350,7 @@ public class BossManager implements Listener {
             e.getDrops().add(plugin.getCustomItems().createBloodShard(6));
             e.getDrops().add(plugin.getCustomItems().createMoonroot(3));
             e.getDrops().add(plugin.getCustomItems().createEnchantBook("boithu", 1 + random.nextInt(2)));
-            Bukkit.broadcast(Component.text("§aHuyet Mau bi ha! Rot Shard + Moonroot + Boi Thu."));
+            Bukkit.broadcast(Component.text("§aHuyết Mẫu bị hạ! Rớt Shard + Moonroot + Bội Thu."));
         } else if ("yeti".equals(el)) {
             elites.remove(le.getUniqueId());
             e.getDrops().add(plugin.getCustomItems().createFrostberry(3));

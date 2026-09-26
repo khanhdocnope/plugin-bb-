@@ -95,12 +95,12 @@ public class PseudoEnchant implements Listener {
 
     private String shortKeyToName(String k) {
         return switch (k) {
-            case "nguyetam" -> "Nguyet Am";
-            case "boithu" -> "Boi Thu";
-            case "suonghan" -> "Suong Han";
-            case "huyetcuong" -> "Huyet Cuong";
-            case "dongam" -> "Dong Am";
-            case "nguyetgiap" -> "Nguyet Giap";
+            case "nguyetam" -> "Nguyệt Ẩm";
+            case "boithu" -> "Bội Thu";
+            case "suonghan" -> "Sương Hàn";
+            case "huyetcuong" -> "Huyết Cuồng";
+            case "dongam" -> "Đông Ấm";
+            case "nguyetgiap" -> "Nguyệt Giáp";
             default -> k;
         };
     }
@@ -109,41 +109,41 @@ public class PseudoEnchant implements Listener {
         ItemStack hand = p.getInventory().getItemInMainHand();
         if (!isWeapon(hand)) return false;
         level = clamp(level, 3);
-        return putLore(hand, pNguyet, level, "§dNguyet Am " + toRoman(level) + " §7- hut " + (level * 5 + 1) + "% mau");
+        return putLore(hand, pNguyet, level, "§dNguyệt Ẩm " + toRoman(level) + " §7- hút " + (level * 5 + 1) + "% máu");
     }
 
     public boolean applyBoiThu(Player p, int level) {
         ItemStack hand = p.getInventory().getItemInMainHand();
         if (!isTool(hand)) return false;
         level = clamp(level, 3);
-        return putLore(hand, pBoi, level, "§aBoi Thu " + toRoman(level) + " §7- " + (20 + level * 15) + "% x2 nong san");
+        return putLore(hand, pBoi, level, "§aBội Thu " + toRoman(level) + " §7- " + (20 + level * 15) + "% x2 nông sản");
     }
 
     public boolean applySuongHan(Player p, int level) {
         ItemStack hand = p.getInventory().getItemInMainHand();
         if (!isWeapon(hand)) return false;
         level = clamp(level, 2);
-        return putLore(hand, pSuong, level, "§bSuong Han " + toRoman(level) + " §7- " + (level * 10) + "% slow 2s");
+        return putLore(hand, pSuong, level, "§bSương Hàn " + toRoman(level) + " §7- " + (level * 10) + "% làm chậm 2s");
     }
 
     public boolean applyHuyetCuong(Player p, int level) {
         ItemStack hand = p.getInventory().getItemInMainHand();
         if (!isWeapon(hand)) return false;
         level = clamp(level, 3);
-        return putLore(hand, pCuong, level, "§cHuyet Cuong " + toRoman(level) + " §7- manh khi yeu mau/đem huyet nguyet");
+        return putLore(hand, pCuong, level, "§cHuyết Cuồng " + toRoman(level) + " §7- mạnh khi yếu máu/đêm Huyết Nguyệt");
     }
 
     public boolean applyDongAm(Player p) {
         ItemStack hand = p.getInventory().getItemInMainHand();
         if (!isArmor(hand) && !isTool(hand) && !isWeapon(hand)) return false;
-        return putLore(hand, pAm, 1, "§eDong Am §7- mien Chill mua Dong");
+        return putLore(hand, pAm, 1, "§eĐông Ấm §7- miễn Chill mùa Đông");
     }
 
     public boolean applyNguyetGiap(Player p, int level) {
         ItemStack hand = p.getInventory().getItemInMainHand();
         if (!isArmor(hand)) return false;
         level = clamp(level, 2);
-        return putLore(hand, pGiap, level, "§9Nguyet Giap " + toRoman(level) + " §7- giam " + (level * 8) + "% dmg ban dem");
+        return putLore(hand, pGiap, level, "§9Nguyệt Giáp " + toRoman(level) + " §7- giảm " + (level * 8) + "% sát thương ban đêm");
     }
 
     private int clamp(int lv, int max) { return Math.max(1, Math.min(max, lv)); }

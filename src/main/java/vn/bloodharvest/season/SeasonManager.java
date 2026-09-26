@@ -110,7 +110,7 @@ public class SeasonManager implements Listener {
             Season s = currentSeason();
             String blood = plugin.getBloodMoonManager() != null && plugin.getBloodMoonManager().isActive()
                     ? " §c● Blood Moon!" : "";
-            String title = s.display() + " §8| §fNgay " + dayInSeason() + "/" + getDaysPerSeason() + blood;
+            String title = s.display() + " §8| §fNgày " + dayInSeason() + "/" + getDaysPerSeason() + blood;
             bar.setTitle(title);
             switch (s) {
                 case XUAN -> bar.setColor(BarColor.GREEN);
@@ -169,7 +169,7 @@ public class SeasonManager implements Listener {
 
     public Component statusLine() {
         Season s = currentSeason();
-        return Component.text("Mua hien tai: " + s.name()
-                + " (ngay " + dayInSeason() + "/" + getDaysPerSeason() + ")");
+        return Component.text("Mùa hiện tại: " + s.display()
+                + " (ngày " + dayInSeason() + "/" + getDaysPerSeason() + ")");
     }
 }

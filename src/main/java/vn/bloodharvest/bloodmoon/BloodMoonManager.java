@@ -86,7 +86,7 @@ public class BloodMoonManager implements Listener {
                 active = false;
                 forced = false;
                 forcedOff = false;
-                Bukkit.broadcast(Component.text("§7Binh minh len... Blood Moon ket thuc."));
+                Bukkit.broadcast(Component.text("§7Bình minh lên... Blood Moon kết thúc."));
             }
         }, 40L, 100L);
     }
@@ -97,10 +97,10 @@ public class BloodMoonManager implements Listener {
     }
 
     private void announceStart() {
-        Bukkit.broadcast(Component.text("§c§l☾ BLOOD MOON! §7Quai manh hon, can than!"));
+        Bukkit.broadcast(Component.text("§c§l☾ BLOOD MOON! §7Quái mạnh hơn, cẩn thận!"));
         Title title = Title.title(
                 Component.text("§c§lBLOOD MOON"),
-                Component.text("§7Quai +HP +DMG - Rot Shard/Moonroot"),
+                Component.text("§7Quái +HP +DMG - Rớt Shard/Moonroot"),
                 Title.Times.times(Duration.ofMillis(500), Duration.ofMillis(2500), Duration.ofMillis(800)));
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.showTitle(title);
@@ -130,7 +130,7 @@ public class BloodMoonManager implements Listener {
         forced = false;
         forcedOff = true;
         active = false;
-        Bukkit.broadcast(Component.text("§7Blood Moon bi buoc ket thuc (admin)."));
+        Bukkit.broadcast(Component.text("§7Blood Moon bị buộc kết thúc (admin)."));
     }
 
     @EventHandler(ignoreCancelled = true)

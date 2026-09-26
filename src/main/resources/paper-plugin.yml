@@ -1,38 +1,38 @@
 name: BloodHarvest
-version: 1.0.0
+version: 1.1.0
 main: vn.bloodharvest.BloodHarvestPlugin
 api-version: '1.20'
 author: BloodHarvest Team
-description: Blood Moon + Seasons + Farming v1.0 - nhe cho server 2.5GB
+description: Blood Moon + Seasons + Farming + TPA v1.1 - nhe cho server 2.5GB
 website: https://github.com/anomalyco/opencode
 commands:
   bh:
-    description: Lenh chinh BloodHarvest
+    description: Lệnh chính BloodHarvest
     usage: /bh <mua|lich|bloodmoon|boss|give|enchant|help>
     permission: bloodharvest.use
     aliases: [bloodharvest]
   tpa:
-    description: Gui yeu cau dich chuyen toi nguoi choi
-    usage: /tpa <ten>
+    description: Gửi yêu cầu dịch chuyển tới người chơi
+    usage: /tpa <tên>
     permission: bloodharvest.tpa
   tpahere:
-    description: Moi nguoi choi dich chuyen den cho ban
-    usage: /tpahere <ten>
+    description: Mời người chơi dịch chuyển đến chỗ bạn
+    usage: /tpahere <tên>
     permission: bloodharvest.tpa
   tpaccept:
-    description: Chap nhan yeu cau dich chuyen
-    usage: /tpaccept [ten]
+    description: Chấp nhận yêu cầu dịch chuyển
+    usage: /tpaccept [tên]
     permission: bloodharvest.tpa
   tpdeny:
-    description: Tu choi yeu cau dich chuyen
-    usage: /tpdeny [ten]
+    description: Từ chối yêu cầu dịch chuyển
+    usage: /tpdeny [tên]
     permission: bloodharvest.tpa
   tpcancel:
-    description: Huy yeu cau da gui
+    description: Hủy yêu cầu đã gửi
     usage: /tpcancel
     permission: bloodharvest.tpa
   tptoggle:
-    description: Bat/tat nhan yeu cau dich chuyen
+    description: Bật/tắt nhận yêu cầu dịch chuyển
     usage: /tptoggle
     permission: bloodharvest.tpa
 permissions:
