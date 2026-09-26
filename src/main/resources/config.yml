@@ -1,0 +1,36 @@
+# BloodHarvest MVP config - Paper 1.20.6
+# Giu that nhe cho RAM 2.5GB: chi 2 task chay ngam, khong tick per-tick
+
+season:
+  # So ngay ingame moi mua (1 ngay = 24000 ticks ~ 20 phut)
+  # De test nhanh thi de 2, choi that thi de 8
+  days-per-season: 2
+  # Thu tu mua
+  order: ["XUAN", "HA", "THU", "DONG"]
+  start-season: "XUAN"
+  # Nhan x crop growth
+  growth-multiplier:
+    XUAN: 1.3
+    HA: 1.0
+    THU: 1.5
+    DONG: 0.4
+
+bloodmoon:
+  # Cu N dem thi 1 dem Blood Moon
+  every-n-nights: 3
+  # MVP de 3 de test nhanh, that thi de 7
+  buff-hp-multiplier: 1.6
+  buff-damage-multiplier: 1.3
+  shard-drop-chance: 0.35
+
+boss:
+  max-alive: 1
+  despawn-minutes: 10
+  # Mau co ban Ravager boss
+  dalang-hp: 300.0
+  dalang-damage: 12.0
+  yeti-hp: 120.0
+  yeti-damage: 7.0
+
+limits:
+  max-elite-per-player: 2
