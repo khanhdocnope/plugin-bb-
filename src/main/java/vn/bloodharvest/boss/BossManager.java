@@ -95,7 +95,7 @@ public class BossManager implements Listener {
                     long wolves = nearby.stream().filter(x -> x instanceof Wolf).count();
                     for (Entity n : nearby) {
                         if (n instanceof Player p) {
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 0));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 60, 0));
                             p.damage(2.0, rav);
                             p.setVelocity(p.getLocation().toVector().subtract(rav.getLocation().toVector()).normalize().multiply(1.2).setY(0.5));
                         }
@@ -146,7 +146,7 @@ public class BossManager implements Listener {
                 case "yeti" -> {
                     for (Entity n : le.getNearbyEntities(8, 4, 8)) {
                         if (n instanceof Player p) {
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 0, false, false, true));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 100, 0, false, false, true));
                         }
                     }
                 }
@@ -205,7 +205,7 @@ public class BossManager implements Listener {
         if (w.getPlayers().isEmpty()) return false;
         Player p = w.getPlayers().get(random.nextInt(w.getPlayers().size()));
         Location loc = p.getLocation().add(random.nextInt(21) - 10, 0, random.nextInt(21) - 10);
-        loc.setY(w.getHighestBlockYAt(loc).getY() + 1);
+        loc.setY(w.getHighestBlockYAt(loc) + 1);
         int pick = random.nextInt(3);
         if (pick == 0) return spawnDaLang(loc);
         if (pick == 1) return spawnKySi(loc);

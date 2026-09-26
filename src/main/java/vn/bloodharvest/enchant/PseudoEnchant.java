@@ -192,7 +192,7 @@ public class PseudoEnchant implements Listener {
         // Suong Han: slow muc tieu
         int suong = getSuongHan(hand);
         if (suong > 0 && random.nextDouble() < suong * 0.10 + 0.05) {
-            victim.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 40, suong - 1, false, false, true));
+            victim.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 40, suong - 1, false, false, true));
         }
 
         // Nguyet Am: hut mau theo final damage (uoc luong sau buff cuong)

@@ -110,7 +110,7 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 Location loc = p.getLocation().add(p.getLocation().getDirection().multiply(3));
-                loc.setY(p.getWorld().getHighestBlockYAt(loc).getY() + 1);
+                loc.setY(p.getWorld().getHighestBlockYAt(loc) + 1);
                 boolean ok = false;
                 String name = args[1].toLowerCase();
                 switch (name) {

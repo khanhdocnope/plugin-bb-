@@ -193,11 +193,11 @@ public class CustomItems implements Listener {
         } else if (isCustom(it, "tra_am")) {
             e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 3600, 0, false, false, true));
             e.getPlayer().removePotionEffect(PotionEffectType.HUNGER);
-            e.getPlayer().removePotionEffect(PotionEffectType.SLOW);
+            e.getPlayer().removePotionEffect(PotionEffectType.SLOWNESS);
         } else if (isCustom(it, "moonroot")) {
             e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 6000, 0, false, false, true));
         } else if (isCustom(it, "banh_bi")) {
-            e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1200, 0, false, false, true));
+            e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 1200, 0, false, false, true));
         } else if (isCustom(it, "lau_nam")) {
             e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 6000, 1, false, false, true));
             e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 0, false, false, true));

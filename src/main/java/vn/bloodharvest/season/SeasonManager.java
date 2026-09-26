@@ -144,7 +144,7 @@ public class SeasonManager implements Listener {
                 if (nearHeat) continue;
                 p.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 0, false, false, true));
                 if (random.nextDouble() < 0.4) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 0, false, false, true));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 200, 0, false, false, true));
                 }
             }
         }, 200L, 200L);
