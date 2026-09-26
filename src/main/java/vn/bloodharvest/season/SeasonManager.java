@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * MVP Seasons: vong lap 4 mua dua tren ngay ingame, khong can DB.
- * Nhe: 1 task moi 100 ticks (5s) + random cancel growth khi DONG.
+ * BloodHarvest v1.0 Seasons: vong lap 4 mua dua tren ngay ingame, khong can DB.
+ * Nhe: 1 task BossBar moi 100 ticks + 1 task Chill moi 200 ticks.
  */
 public class SeasonManager implements Listener {
 
@@ -53,7 +53,7 @@ public class SeasonManager implements Listener {
     }
 
     public int getDaysPerSeason() {
-        return Math.max(1, plugin.getConfig().getInt("season.days-per-season", 2));
+        return Math.max(1, plugin.getConfig().getInt("season.days-per-season", 8));
     }
 
     public World mainWorld() {
@@ -129,17 +129,19 @@ public class SeasonManager implements Listener {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 if (p.getGameMode() == org.bukkit.GameMode.CREATIVE
                         || p.getGameMode() == org.bukkit.GameMode.SPECTATOR) continue;
+                // Dong Am enchant -> mien Chill
+                try {
+                    if (plugin.getPseudoEnchant() != null && plugin.getPseudoEnchant().hasDongAmArmor(p)) continue;
+                } catch (Exception ignored) {}
                 Biome biome = p.getLocation().getBlock().getBiome();
                 String bn = biome.name();
                 boolean snowy = bn.contains("SNOW") || bn.contains("FROZEN") || bn.contains("ICE");
                 if (!snowy) continue;
-                // Mien neu co Tra Am hoac gan lua
+                // Mien neu co Tra Am (FIRE_RES) hoac gan lua
                 if (p.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)) continue;
-                // Don gian: neu dang cam đuoc honey bottle Tra Am thi bo qua? Check potion sau.
                 // Gan lua/lava/duoc trong 5 block thi khong chill
                 boolean nearHeat = p.getLocation().getBlock().getLightFromBlocks() >= 10;
                 if (nearHeat) continue;
-                // Mac ao da full thi giam nhe
                 p.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 0, false, false, true));
                 if (random.nextDouble() < 0.4) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 0, false, false, true));

@@ -1,14 +1,14 @@
 name: BloodHarvest
-version: 0.1.0-MVP
+version: 1.0.0
 main: vn.bloodharvest.BloodHarvestPlugin
 api-version: '1.20'
 author: BloodHarvest Team
-description: Blood Moon + Seasons + Farming MVP - nhe cho server 2.5GB
+description: Blood Moon + Seasons + Farming v1.0 - nhe cho server 2.5GB
 website: https://github.com/anomalyco/opencode
 commands:
   bh:
     description: Lenh chinh BloodHarvest
-    usage: /bh <mua|bloodmoon|boss|give|help>
+    usage: /bh <mua|lich|bloodmoon|boss|give|enchant|help>
     permission: bloodharvest.use
     aliases: [bloodharvest]
 permissions:

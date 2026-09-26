@@ -22,7 +22,7 @@ import java.time.Duration;
 import java.util.Random;
 
 /**
- * MVP BloodMoon: cu N dem 1 lan, buff mob + rot Blood Shard.
+ * BloodHarvest v1.0 BloodMoon: cu N dem 1 lan, buff mob + rot Shard/Moonroot + tu spawn boss.
  * Nhe: 1 task 100 ticks, chi xu ly khi dang dem.
  */
 public class BloodMoonManager implements Listener {
@@ -42,7 +42,7 @@ public class BloodMoonManager implements Listener {
     }
 
     public int everyN() {
-        return Math.max(1, plugin.getConfig().getInt("bloodmoon.every-n-nights", 3));
+        return Math.max(1, plugin.getConfig().getInt("bloodmoon.every-n-nights", 7));
     }
 
     public boolean isActive() { return active; }
@@ -100,10 +100,22 @@ public class BloodMoonManager implements Listener {
         Bukkit.broadcast(Component.text("§c§l☾ BLOOD MOON! §7Quai manh hon, can than!"));
         Title title = Title.title(
                 Component.text("§c§lBLOOD MOON"),
-                Component.text("§7Quai +HP +DMG - Rot Blood Shard"),
+                Component.text("§7Quai +HP +DMG - Rot Shard/Moonroot"),
                 Title.Times.times(Duration.ofMillis(500), Duration.ofMillis(2500), Duration.ofMillis(800)));
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.showTitle(title);
+        }
+        // Tu spawn 1 boss Blood Moon gan player ngau nhien (neu chua co)
+        if (plugin.getConfig().getBoolean("bloodmoon.auto-spawn-boss", true)) {
+            try {
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                    try {
+                        if (!Bukkit.getWorlds().isEmpty()) {
+                            plugin.getBossManager().trySpawnNaturalBoss(Bukkit.getWorlds().get(0));
+                        }
+                    } catch (Exception ignored) {}
+                }, 100L);
+            } catch (Exception ignored) {}
         }
     }
 
@@ -160,5 +172,18 @@ public class BloodMoonManager implements Listener {
         if (random.nextDouble() < chance) {
             e.getDrops().add(plugin.getCustomItems().createBloodShard(1));
         }
+        double mChance = plugin.getConfig().getDouble("bloodmoon.moonroot-drop-chance", 0.12);
+        if (random.nextDouble() < mChance) {
+            e.getDrops().add(plugin.getCustomItems().createMoonroot(1));
+        }
+        e.setDroppedExp(e.getDroppedExp() * 2);
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onCombust(org.bukkit.event.entity.EntityCombustEvent e) {
+        // Quai Blood Moon kho chay nang sang hom sau (50% mien)
+        if (!(e.getEntity() instanceof LivingEntity le)) return;
+        if (!le.getPersistentDataContainer().has(buffKey, PersistentDataType.BYTE)) return;
+        if (random.nextDouble() < 0.5) e.setCancelled(true);
     }
 }

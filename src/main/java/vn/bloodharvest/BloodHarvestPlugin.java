@@ -54,7 +54,7 @@ public final class BloodHarvestPlugin extends JavaPlugin {
         bloodMoonManager.startTask();
         bossManager.startTask();
 
-        getLogger().info("BloodHarvest MVP enabled! Mua primavera + BloodMoon + Boss san sang.");
+        getLogger().info("BloodHarvest v1.0 enabled! 4 mua + BloodMoon + 3 boss + 4 elite san sang.");
     }
 
     @Override
@@ -62,7 +62,7 @@ public final class BloodHarvestPlugin extends JavaPlugin {
         if (seasonManager != null) seasonManager.stopTask();
         if (bloodMoonManager != null) bloodMoonManager.stopTask();
         if (bossManager != null) bossManager.stopTask();
-        getLogger().info("BloodHarvest MVP disabled.");
+        getLogger().info("BloodHarvest v1.0 disabled.");
     }
 
     public SeasonManager getSeasonManager() { return seasonManager; }
