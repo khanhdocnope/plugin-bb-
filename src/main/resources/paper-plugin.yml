@@ -11,8 +11,34 @@ commands:
     usage: /bh <mua|lich|bloodmoon|boss|give|enchant|help>
     permission: bloodharvest.use
     aliases: [bloodharvest]
+  tpa:
+    description: Gui yeu cau dich chuyen toi nguoi choi
+    usage: /tpa <ten>
+    permission: bloodharvest.tpa
+  tpahere:
+    description: Moi nguoi choi dich chuyen den cho ban
+    usage: /tpahere <ten>
+    permission: bloodharvest.tpa
+  tpaccept:
+    description: Chap nhan yeu cau dich chuyen
+    usage: /tpaccept [ten]
+    permission: bloodharvest.tpa
+  tpdeny:
+    description: Tu choi yeu cau dich chuyen
+    usage: /tpdeny [ten]
+    permission: bloodharvest.tpa
+  tpcancel:
+    description: Huy yeu cau da gui
+    usage: /tpcancel
+    permission: bloodharvest.tpa
+  tptoggle:
+    description: Bat/tat nhan yeu cau dich chuyen
+    usage: /tptoggle
+    permission: bloodharvest.tpa
 permissions:
   bloodharvest.use:
+    default: true
+  bloodharvest.tpa:
     default: true
   bloodharvest.admin:
     default: op

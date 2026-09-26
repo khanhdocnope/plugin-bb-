@@ -7,6 +7,8 @@ import vn.bloodharvest.command.BHCommand;
 import vn.bloodharvest.enchant.PseudoEnchant;
 import vn.bloodharvest.farming.CustomItems;
 import vn.bloodharvest.season.SeasonManager;
+import vn.bloodharvest.tpa.TpaCommand;
+import vn.bloodharvest.tpa.TpaManager;
 
 public final class BloodHarvestPlugin extends JavaPlugin {
 
@@ -16,6 +18,7 @@ public final class BloodHarvestPlugin extends JavaPlugin {
     private BossManager bossManager;
     private CustomItems customItems;
     private PseudoEnchant pseudoEnchant;
+    private TpaManager tpaManager;
 
     public static BloodHarvestPlugin getInstance() {
         return instance;
@@ -31,6 +34,7 @@ public final class BloodHarvestPlugin extends JavaPlugin {
         seasonManager = new SeasonManager(this);
         bloodMoonManager = new BloodMoonManager(this);
         bossManager = new BossManager(this);
+        tpaManager = new TpaManager(this);
 
         // Events
         getServer().getPluginManager().registerEvents(seasonManager, this);
@@ -38,6 +42,7 @@ public final class BloodHarvestPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(bossManager, this);
         getServer().getPluginManager().registerEvents(customItems, this);
         getServer().getPluginManager().registerEvents(pseudoEnchant, this);
+        getServer().getPluginManager().registerEvents(tpaManager, this);
 
         // Command
         BHCommand bh = new BHCommand(this);
@@ -45,14 +50,22 @@ public final class BloodHarvestPlugin extends JavaPlugin {
             getCommand("bh").setExecutor(bh);
             getCommand("bh").setTabCompleter(bh);
         }
+        TpaCommand tpa = new TpaCommand(this, tpaManager);
+        for (String c : new String[]{"tpa", "tpahere", "tpaccept", "tpdeny", "tpcancel", "tptoggle"}) {
+            if (getCommand(c) != null) {
+                getCommand(c).setExecutor(tpa);
+                getCommand(c).setTabCompleter(tpa);
+            }
+        }
 
         // Recipes
         customItems.registerRecipes();
 
-        // Tasks (rat nhe: 2 task, khong tick per-tick)
+        // Tasks (rat nhe: task cham, khong tick per-tick)
         seasonManager.startTask();
         bloodMoonManager.startTask();
         bossManager.startTask();
+        tpaManager.startTask();
 
         getLogger().info("BloodHarvest v1.0 enabled! 4 mua + BloodMoon + 3 boss + 4 elite san sang.");
     }
@@ -62,6 +75,7 @@ public final class BloodHarvestPlugin extends JavaPlugin {
         if (seasonManager != null) seasonManager.stopTask();
         if (bloodMoonManager != null) bloodMoonManager.stopTask();
         if (bossManager != null) bossManager.stopTask();
+        if (tpaManager != null) tpaManager.stopTask();
         getLogger().info("BloodHarvest v1.0 disabled.");
     }
 
@@ -70,4 +84,5 @@ public final class BloodHarvestPlugin extends JavaPlugin {
     public BossManager getBossManager() { return bossManager; }
     public CustomItems getCustomItems() { return customItems; }
     public PseudoEnchant getPseudoEnchant() { return pseudoEnchant; }
+    public TpaManager getTpaManager() { return tpaManager; }
 }
