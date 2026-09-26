@@ -39,12 +39,20 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                     sender.sendMessage(plugin.getSeasonManager().statusLine());
                     return true;
                 }
-                if (args[1].equalsIgnoreCase("next") && sender.hasPermission("bloodharvest.admin")) {
+                if (args[1].equalsIgnoreCase("next")) {
+                    if (!sender.hasPermission("bloodharvest.admin")) {
+                        sender.sendMessage(Component.text("§cCần quyền admin (bloodharvest.admin)."));
+                        return true;
+                    }
                     plugin.getSeasonManager().nextSeason();
                     sender.sendMessage(Component.text("§aĐã chuyển sang " + plugin.getSeasonManager().currentSeason().display()));
                     return true;
                 }
-                if (args[1].equalsIgnoreCase("set") && args.length >= 3 && sender.hasPermission("bloodharvest.admin")) {
+                if (args[1].equalsIgnoreCase("set") && args.length >= 3) {
+                    if (!sender.hasPermission("bloodharvest.admin")) {
+                        sender.sendMessage(Component.text("§cCần quyền admin (bloodharvest.admin)."));
+                        return true;
+                    }
                     try {
                         Season s = Season.fromString(args[2]);
                         plugin.getSeasonManager().setSeason(s);
@@ -77,7 +85,7 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 if (!sender.hasPermission("bloodharvest.admin")) {
-                    sender.sendMessage(Component.text("§cCần quyền admin."));
+                    sender.sendMessage(Component.text("§cCần quyền admin (bloodharvest.admin)."));
                     return true;
                 }
                 if (args[1].equalsIgnoreCase("start") && sender instanceof Player p) {
@@ -97,7 +105,7 @@ public class BHCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 if (!sender.hasPermission("bloodharvest.admin")) {
-                    sender.sendMessage(Component.text("§cCần quyền admin để gọi boss."));
+                    sender.sendMessage(Component.text("§cCần quyền admin để gọi boss (bloodharvest.admin)."));
                     return true;
                 }
                 if (args.length < 2) {
@@ -132,7 +140,10 @@ public class BHCommand implements CommandExecutor, TabCompleter {
             }
             case "give" -> {
                 if (!(sender instanceof Player p)) return true;
-                if (!sender.hasPermission("bloodharvest.admin")) return true;
+                if (!sender.hasPermission("bloodharvest.admin")) {
+                    sender.sendMessage(Component.text("§cCần quyền admin (bloodharvest.admin)."));
+                    return true;
+                }
                 if (args.length < 2) {
                     sender.sendMessage(Component.text("§e/bh give <shard|frost|traam|ember|moonroot|banh|lau|nguyetam|boithu|suonghan|huyetcuong|dongam|nguyetgiap> [sl]"));
                     return true;
@@ -158,6 +169,10 @@ public class BHCommand implements CommandExecutor, TabCompleter {
             }
             case "enchant" -> {
                 if (!(sender instanceof Player p)) return true;
+                if (!sender.hasPermission("bloodharvest.enchant")) {
+                    sender.sendMessage(Component.text("§cCần quyền ép enchant (bloodharvest.enchant)."));
+                    return true;
+                }
                 if (args.length < 2) {
                     sender.sendMessage(Component.text("§e/bh enchant <nguyetam|boithu|suonghan|huyetcuong|dongam|nguyetgiap> [lv]"));
                     return true;

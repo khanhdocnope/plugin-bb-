@@ -39,6 +39,10 @@ public class TpaCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (!sender.hasPermission("bloodharvest.tpa")) {
+            sender.sendMessage(Component.text("§cCần quyền dịch chuyển (bloodharvest.tpa)."));
+            return true;
+        }
         String n = cmd.getName().toLowerCase();
         switch (n) {
             case "tpa", "tpahere" -> {

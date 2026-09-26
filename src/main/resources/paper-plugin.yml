@@ -37,8 +37,23 @@ commands:
     permission: bloodharvest.tpa
 permissions:
   bloodharvest.use:
+    description: Xem mùa/lịch/Blood Moon và dùng /bh cơ bản
     default: true
   bloodharvest.tpa:
+    description: Dùng cụm lệnh dịch chuyển /tpa
+    default: true
+  bloodharvest.enchant:
+    description: Ép enchant custom bằng /bh enchant
     default: true
   bloodharvest.admin:
+    description: Đổi mùa, ép Blood Moon, gọi boss, give đồ, miễn chờ TPA
     default: op
+    children:
+      bloodharvest.use: true
+      bloodharvest.tpa: true
+      bloodharvest.enchant: true
+  bloodharvest.*:
+    description: Toàn quyền BloodHarvest
+    default: op
+    children:
+      bloodharvest.admin: true
