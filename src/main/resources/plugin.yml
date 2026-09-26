@@ -1,0 +1,59 @@
+name: BloodHarvest
+version: 1.1.0
+main: vn.bloodharvest.BloodHarvestPlugin
+api-version: '1.20'
+author: BloodHarvest Team
+description: Blood Moon + Seasons + Farming + TPA v1.1 - nhe cho server 2.5GB
+website: https://github.com/anomalyco/opencode
+commands:
+  bh:
+    description: Lenh chinh BloodHarvest
+    usage: /bh <mua|lich|bloodmoon|boss|give|enchant|help>
+    permission: bloodharvest.use
+    aliases: [bloodharvest]
+  tpa:
+    description: Gui yeu cau dich chuyen toi nguoi choi
+    usage: /tpa <ten>
+    permission: bloodharvest.tpa
+  tpahere:
+    description: Moi nguoi choi dich chuyen den cho ban
+    usage: /tpahere <ten>
+    permission: bloodharvest.tpa
+  tpaccept:
+    description: Chap nhan yeu cau dich chuyen
+    usage: /tpaccept [ten]
+    permission: bloodharvest.tpa
+  tpdeny:
+    description: Tu choi yeu cau dich chuyen
+    usage: /tpdeny [ten]
+    permission: bloodharvest.tpa
+  tpcancel:
+    description: Huy yeu cau da gui
+    usage: /tpcancel
+    permission: bloodharvest.tpa
+  tptoggle:
+    description: Bat/tat nhan yeu cau dich chuyen
+    usage: /tptoggle
+    permission: bloodharvest.tpa
+permissions:
+  bloodharvest.use:
+    description: Xem mua/lich/Blood Moon va dung /bh co ban
+    default: true
+  bloodharvest.tpa:
+    description: Dung cum lenh dich chuyen /tpa
+    default: true
+  bloodharvest.enchant:
+    description: Ep enchant custom bang /bh enchant
+    default: true
+  bloodharvest.admin:
+    description: Doi mua, ep Blood Moon, goi boss, give do, mien cho TPA
+    default: op
+    children:
+      bloodharvest.use: true
+      bloodharvest.tpa: true
+      bloodharvest.enchant: true
+  bloodharvest.*:
+    description: Toan quyen BloodHarvest
+    default: op
+    children:
+      bloodharvest.admin: true
