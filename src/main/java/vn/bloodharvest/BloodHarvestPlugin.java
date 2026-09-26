@@ -44,17 +44,21 @@ public final class BloodHarvestPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(pseudoEnchant, this);
         getServer().getPluginManager().registerEvents(tpaManager, this);
 
-        // Command
+        // Command (log canh bao neu lenh khong co trong mo ta plugin)
         BHCommand bh = new BHCommand(this);
         if (getCommand("bh") != null) {
             getCommand("bh").setExecutor(bh);
             getCommand("bh").setTabCompleter(bh);
+        } else {
+            getLogger().warning("Khong tim thay lenh /bh trong plugin.yml!");
         }
         TpaCommand tpa = new TpaCommand(this, tpaManager);
         for (String c : new String[]{"tpa", "tpahere", "tpaccept", "tpdeny", "tpcancel", "tptoggle"}) {
             if (getCommand(c) != null) {
                 getCommand(c).setExecutor(tpa);
                 getCommand(c).setTabCompleter(tpa);
+            } else {
+                getLogger().warning("Khong tim thay lenh /" + c + " trong plugin.yml!");
             }
         }
 
